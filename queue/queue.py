@@ -16,13 +16,21 @@ Stretch: What if you could only use instances of your Stack class to implement t
 class Queue:
     def __init__(self):
         self.size = 0
-        # self.storage = ?
+        self.storage = []
     
     def __len__(self):
-        pass
+        return self.size
 
     def enqueue(self, value):
-        pass
+        self.storage.append(value)
+        self.size += 1
 
     def dequeue(self):
-        pass
+        if self.size is 0:
+            return None
+        else:
+            ret_value = self.storage[0]
+            self.storage.pop(0)
+            self.size -= 1
+            return ret_value
+        
