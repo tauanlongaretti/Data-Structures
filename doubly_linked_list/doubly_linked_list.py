@@ -16,6 +16,11 @@ class ListNode:
         if self.next:
             self.prev.next = self.next
 
+    def remove_head():
+        self.next.prev = None
+
+    def remove_tail():
+        self.prev.next = None
 
 """
 Our doubly-linked list class. It holds references to 
@@ -60,7 +65,19 @@ class DoublyLinkedList:
     """
 
     def remove_from_head(self):
-        pass
+        removed_node = self.head.value
+        if self.head is None:
+            return None
+        elif self.head is self.tail:
+            self.head = None
+            self.tail = None
+            self.length -= 1
+            return removed_node
+        else:
+            self.head.remove_head()
+            self.head = self.head.next
+            self.length -= 1
+            return removed_node
 
     """
     Wraps the given value in a ListNode and inserts it 
