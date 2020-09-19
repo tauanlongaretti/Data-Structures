@@ -37,25 +37,18 @@ class Queue:
 
 #Queue class using linked list.
 class Node:
-    def __init__(self, value=None, next_node=None, prev_node=None):
+    def __init__(self, value=None, next_node=None):
         self.value = value
         self.next_node = next_node
-        self.prev_node = prev_node
 
     def get_value(self):
         return self.value
 
     def get_next_node(self):
-        return self.next_node
-
-    def get_prev_node(self):
-        return self.prev_node    
+        return self.next_node   
 
     def set_next_node(self, new_next):
         self.next_node = new_next
-
-    def set_prev_node(self, new_prev):
-        self.prev_node = new_prev    
         
 class Queue:
     def __init__(self):
@@ -72,7 +65,6 @@ class Queue:
             self.head = new_node
             self.tail = new_node    
         else:
-            self.head.set_prev_node(new_node)
             new_node.set_next_node(self.head)
             self.head = new_node
         self.size += 1
@@ -80,17 +72,18 @@ class Queue:
     def dequeue(self):
         if self.head is None:
             return None
-        elif self.size is 1:
-            ret_value = self.tail.get_value()
-            self.tail = self.tail.get_prev_node()
-            self.size -= 1
+        ret_value = self.tail.get_value()    
+        if self.head == self.tail:           
             self.head = None
             self.tail = None
-            return ret_value
         else:
-            ret_value = self.tail.get_value()
-            self.tail = self.tail.get_prev_node()
-            self.size -= 1
-            return ret_value
+            cur_node = self.head
+            while cur_node.get_next_node() is not self.tail:
+                cur_node = cur_node.get_next_node()
+            cur_node.set_next_node(None)
+            self.tail = cur_node
+        self.size -= 1
+        return ret_value
+        
 
-# the difference between using an array vs. a linked list when implementing a queue is that for linked lists you would have to keep track of previous node. 
+# the difference between using an array vs. a linked list when implementing a queue is that for linked lists you would have to loop between the entire list as you can't target the index. 
