@@ -11,13 +11,10 @@ class ListNode:
         self.next = next_node
 
     def delete(self):
-        if self.prev:
-            self.next.prev = self.prev
         if self.next:
+            self.next.prev = self.prev
+        if self.prev:
             self.prev.next = self.next
-
-    # def remove_tail():
-    #     self.prev.next = None
 
 """
 Our doubly-linked list class. It holds references to 
@@ -71,7 +68,7 @@ class DoublyLinkedList:
             self.length -= 1
             return removed_node
         else:
-            self.head = self.head.next.prev
+            self.head.next.prev = None
             self.head = self.head.next
             self.length -= 1
             return removed_node
@@ -95,7 +92,7 @@ class DoublyLinkedList:
             self.tail.next = new_node
             self.tail = new_node
         # update length
-        self.length =+ 1
+        self.length += 1
 
     """
     Removes the List's current tail node, making the 
@@ -113,11 +110,10 @@ class DoublyLinkedList:
             self.length -= 1
             return removed_node
         else:
-            self.tail = self.tail.prev.next
+            self.tail.prev.next = None
             self.tail = self.tail.prev
             self.length -= 1
             return removed_node
-        pass
 
     """
     Removes the input node from its current spot in the 
