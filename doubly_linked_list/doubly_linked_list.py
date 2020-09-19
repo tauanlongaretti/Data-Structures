@@ -16,11 +16,8 @@ class ListNode:
         if self.next:
             self.prev.next = self.next
 
-    def remove_head():
-        self.next.prev = None
-
-    def remove_tail():
-        self.prev.next = None
+    # def remove_tail():
+    #     self.prev.next = None
 
 """
 Our doubly-linked list class. It holds references to 
@@ -74,7 +71,7 @@ class DoublyLinkedList:
             self.length -= 1
             return removed_node
         else:
-            self.head.remove_head()
+            self.head = self.head.next.prev
             self.head = self.head.next
             self.length -= 1
             return removed_node
@@ -116,7 +113,7 @@ class DoublyLinkedList:
             self.length -= 1
             return removed_node
         else:
-            self.tail.removed_tail()
+            self.tail = self.tail.prev.next
             self.tail = self.tail.prev
             self.length -= 1
             return removed_node
