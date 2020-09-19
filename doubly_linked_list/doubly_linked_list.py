@@ -107,6 +107,19 @@ class DoublyLinkedList:
     """
 
     def remove_from_tail(self):
+        removed_node = self.tail.value
+        if self.tail is None:
+            return None
+        elif self.tail is self.head:
+            self.head = None
+            self.tail = None
+            self.length -= 1
+            return removed_node
+        else:
+            self.tail.removed_tail()
+            self.tail = self.tail.prev
+            self.length -= 1
+            return removed_node
         pass
 
     """
