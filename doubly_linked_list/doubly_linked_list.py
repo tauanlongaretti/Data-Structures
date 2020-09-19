@@ -16,6 +16,7 @@ class ListNode:
         if self.prev:
             self.prev.next = self.next
 
+
 """
 Our doubly-linked list class. It holds references to 
 the list's head and tail nodes.
@@ -167,4 +168,13 @@ class DoublyLinkedList:
     """
 
     def get_max(self):
-        pass
+        current = self.head
+        if self.head is None:
+            return None
+        else:
+            max = self.head.value
+            while current is not None:
+                if current.value > max:
+                    max = current.value
+                current = current.next
+        return max
